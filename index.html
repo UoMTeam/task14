@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>IFE JavaScript Task 01</title>
   </head>
-<body>
+<body onload="showCity()">
 
   <h3>污染城市列表</h3>
   <ul id="aqi-list">
@@ -24,15 +24,33 @@ var aqiData = [
   ["西安", 100]
 ];
 
-(function () {
+var rate = ["一","二","三","四","五","六"];
 
-  /*
-  在注释下方编写代码
-  遍历读取aqiData中各个城市的数据
-  将空气质量指数大于60的城市显示到aqi-list的列表中
-  */
 
-})();
+function showCity(){
+
+  var sCities = "";
+  aqiData.sort(sortBy);
+
+  for(var i=0, j=0; i<aqiData.length; i++){
+
+    if(aqiData[i][1] > 60){
+      sCities += "<li>第" + rate[j] + "名: " + aqiData[i][0] + " , " + aqiData[i][1] +"</li>";
+      j++;
+    }
+
+    document.getElementById("aqi-list").innerHTML = sCities;
+
+  }
+
+}
+
+
+function sortBy(a, b){
+
+  return b[1] - a[1];
+  
+}
 
 </script>
 </body>
